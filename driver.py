@@ -122,7 +122,7 @@ def run_emcee(label, Niter, true_state, obs, Nwalkers, scal, a=2, printing_every
                 c = ens.state.collisionGhostParams[i].deepcopy()
                 collchain = np.append(collchain, [c.get_params()], axis=0)
         if (i%printing_every==1): 
-            print ("Progress: {p:.5}%, time: {t}, current acceptance rate: {a:.5}%".format(p=100.*(float(i)/(Niter/Nwalkers)),t=datetime.utcnow(),a=(tries/(float(Niter))*100)))
+            print ("Progress: {p:.5}%, time: {t}, current acceptance rate: {a:.5}%".format(p=100.*(float(i)/(Niter/Nwalkers)),t=datetime.utcnow(),a=(tries/(float(i*Nwalkers))*100)))
             clocktimes[0].append(datetime.utcnow())
     clocktimes[0].append(datetime.utcnow())
     print("Error(s): {e}".format(e=ens.totalErrorCount))
